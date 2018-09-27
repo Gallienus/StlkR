@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h1 Insta Hub
+    hr
+    each link in links
+        p
+            a(href=link.href)
+                = link.href
+            = ' - ' + link.description

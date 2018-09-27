@@ -1,0 +1,114 @@
+extends layout
+
+block content
+    h1 View post
+    hr
+    a#back(href='/')= '<------------------------'
+    p
+        img(src='/files/' + post.local_display_src, title="display.png")
+        - if (post.is_video)
+            video(src='/files/' + post.local_video_url, controls, loop)
+    hr
+    table(border='1', cellpadding='3', cellspacing='3')
+        tr
+            td
+                b id
+            td= post.id
+        tr
+            td
+                b code
+            td= post.code
+        tr
+            td
+                b user
+            td
+                - if (user)
+                    table(border='1', cellpadding='3', cellspacing='3')
+                        tr
+                            td
+                                b id
+                            td= user.id
+                        tr
+                            td
+                                b username
+                            td= user.username
+                        tr
+                            td
+                                b full_name
+                            td= user.full_name
+                        tr
+                            td
+                                b profile_pic_url
+                            td
+                                a(href=user.profile_pic_url)= user.profile_pic_url
+                        tr
+                            td
+                                b instagram profile
+                            td
+                                a(href='https://www.instagram.com/' + user.username + '/')= 'https://www.instagram.com/' + user.username + '/'
+                        tr
+                            td
+                                b view posts
+                            td
+                                a(href='/posts?user=' + user.id) link
+                - else
+                    = post.user_id
+        tr
+            td
+                b display_src
+            td
+                a(href=post.display_src)= post.display_src
+        tr
+            td
+                b is_video
+            td= post.is_video == 1
+        - if (post.is_video)
+            tr
+                td
+                    b video_url
+                td
+                    a(href=post.video_url)= post.video_url
+        tr
+            td
+                b date
+            - var a = new Date()
+            - a.setTime(post.date*1000)
+            td= a.toLocaleString()
+        tr
+            td
+                b post_url
+            td
+                a(href='https://www.instagram.com/p/' + post.code + '/')= 'https://www.instagram.com/p/' + post.code + '/'
+        tr
+            td
+                b height
+            td= post.height
+        tr
+            td
+                b width
+            td= post.width
+        tr
+            td
+                b is_ad
+            td= post.is_ad == 1
+        tr
+            td
+                b comment_count
+            td= post.comment_count
+        tr
+            td
+                b like_count
+            td= post.like_count
+        tr
+            td
+                b caption
+            td= post.caption
+        tr
+            td
+                b caption_is_edited
+            td= post.caption_is_edited == 1
+        tr
+            td
+                b json
+            td
+                textarea= post.json

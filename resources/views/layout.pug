@@ -1,0 +1,15 @@
+html
+    head
+        link(href='/style.css', rel='stylesheet')
+        script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+        script(src='/tools.js')
+        block extrahead
+        title Insta Hub
+    body
+        if navbar
+            nav
+                each item in navbar
+                    span
+                        a(href=item.href)= item.description
+            hr
+        block content

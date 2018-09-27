@@ -1,0 +1,25 @@
+{
+    "index": {
+        "/": "This page.",
+    
+        "/user": "Info about a user.",
+        "/userSearch": "Search for a user.",
+        "/users": "List all users in the database.",
+    
+        "/post": "Info about a post",
+        "/posts": "List all posts in the database.",
+        
+        "/contents": "View contents from post or user.",
+        "/age": "Update age estimate of users.",
+    
+        "/api": "Root for the API.",
+        "/robot": "Control the robot."
+    },
+    "navbar": [
+        { "href":"/", "description":"Index" },
+        { "href":"/userSearch", "description":"User search" },
+        { "href":"/users", "description":"Users" },
+        { "href":"/age", "description":"Age" },
+        { "href":"/robot", "description":"Robot" }
+    ]
+}

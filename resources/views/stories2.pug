@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    h1 Stories list (by 
+        a(href=`/user?username=${username}`)= username
+        |)
+    hr
+    a#back(href='/')= '<------------------------'
+    table(border='1', cellpadding='3', cellspacing='3')
+        tr
+            //- - var fl = '↓';
+            //- - if (flow == 'desc')
+            //-     - fl = '↑';
+            - if (!sort) sort = 'id'
+            - if (!flow) flow = 'desc'
+            - let nextFlow = flow === 'desc' ? 'asc' : 'desc'
+            - let idLink       = `?username=${username}&sort=id&flow=${      sort === 'id'            ? nextFlow : 'asc'}`
+            - let uploadedLink = `?username=${username}&sort=uploaded&flow=${sort === 'uploaded'      ? nextFlow : 'asc'}`
+            - let isVideoLink  = `?username=${username}&sort=is_video&flow=${sort === 'comment_count' ? nextFlow : 'asc'}`
+            th
+                a(href=idLink) id
+            th
+                a(href=uploadedLink) date
+            th time
+            th 
+                a.small(href=isVideoLink) is_video
+
+        - let options1 = { year:'numeric', month:'2-digit', day:'2-digit' }
+        each story in stories
+            tr
+                td= story.id
+                if story.uploaded
+                    - var a = new Date();
+                    - a.setTime(story.uploaded);
+                    td= a.toLocaleDateString(undefined, options1)
+                    td= a.toLocaleTimeString()
+                else
+                    td -
+                    td -
+                if (story.is_video === 1)
+                    td.true true
+                else
+                    td.false false
+                td
+                    a(href=`/story?id=${story.id}`) View

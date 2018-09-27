@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h1 Post list
+    hr
+    a#back(href='/')= '<------------------------'
+    - if (added)
+        p
+            table(border='1', cellpadding='3', cellspacing='3')
+                tr
+                    th Link
+                    th Data
+                each item, key in status
+                    tr
+                        td
+                            a(href=key)= key
+                        td
+                            table(border='1', cellpadding='3', cellspacing='3')
+                                tr
+                                    td
+                                        b User
+                                    td= item.uid
+                                tr
+                                    td
+                                        b Post
+                                    td= item.pid
+                                tr
+                                    td
+                                        b Files
+                                    td
+                                        table(border='1', cellpadding='3', cellspacing='3')
+                                            th file_name
+                                            th File
+                                                each file, fn in item.files
+                                                    tr
+                                                        td= fn
+                                                        td= file
+    form#add_form(action='/api/add', method='GET')
+        p
+            b= 'Link '
+            = '(one link per line): '
+        p
+            textarea(name='link', rows='16', cols='64')
+        p
+            b= 'Type: '
+            select(name='type')
+                option(value='post') post
+                option(value='profile') profile
+        p
+            input(type='submit')
+    script(src='/add.js')

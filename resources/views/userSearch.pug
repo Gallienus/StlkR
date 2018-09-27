@@ -1,0 +1,13 @@
+extends layout
+
+block extrahead
+    title User search
+
+block content
+    h1 User search
+    hr
+    p
+        | Search a user 
+        input#userSearch(type='text')
+        table#options
+    script(src='userSearch.js')

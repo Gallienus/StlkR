@@ -1,0 +1,79 @@
+extends layout
+
+block extrahead
+    if (username)
+        title= `Posts list - ${username}`
+    else
+        title Posts list
+
+block content
+    h1 Posts list (by 
+        a(href=`/user?username=${username}`)= username
+        |)
+    hr
+    table(border='0', cellpadding='3', cellspacing='3')
+        tr
+            //- - var fl = '↓';
+            //- - if (flow == 'desc')
+            //-     - fl = '↑';
+            - if (!sort) sort = 'id'
+            - if (!flow) flow = 'desc'
+            - let nextFlow = flow === 'desc' ? 'asc' : 'desc'
+            - let idLink           = `?username=${username}&sort=id&flow=${           sort === 'id'            ? nextFlow : 'asc'}`
+            - let uploadedLink     = `?username=${username}&sort=uploaded&flow=${     sort === 'uploaded'      ? nextFlow : 'asc'}`
+            - let commentCountLink = `?username=${username}&sort=comment_count&flow=${sort === 'comment_count' ? nextFlow : 'asc'}`
+            - let likeCountLink    = `?username=${username}&sort=like_count&flow=${   sort === 'like_count'    ? nextFlow : 'asc'}`
+            - let stillExistsLink  = `?username=${username}&sort=still_exists&flow=${ sort === 'still_exists'  ? nextFlow : 'asc'}`
+            - let savedContentLink = `?username=${username}&sort=saved_content&flow=${sort === 'saved_content' ? nextFlow : 'asc'}`
+            th
+                a(href=idLink) id
+            th code
+            th
+                a(href=uploadedLink) date
+            th time
+            th 
+                a.small(href=commentCountLink) comment_count
+            th
+                a.small(href=likeCountLink) like_count
+            th caption
+            th
+                a.small(href=stillExistsLink) still_exists
+            th
+                a.small(href=savedContentLink) saved_content
+            th IG post
+
+        - let options1 = { year:'numeric', month:'2-digit', day:'2-digit' }
+        each post in posts
+            tr
+                td= post.id
+                td
+                    a.small.codeElement(href=`/post?code=${post.code}`)= post.code
+                if post.uploaded
+                    - var a = new Date();
+                    - a.setTime(post.uploaded);
+                    td= a.toLocaleDateString(undefined, options1)
+                    td= a.toLocaleTimeString()
+                else
+                    td -
+                    td -
+                td= post.comment_count || '-'
+                td= post.like_count || '-'
+                if (post.caption && post.caption.length > 30)
+                    td.caption(title=post.caption)= post.caption.substr(0,28) + '...'
+                else
+                    td.caption= post.caption || '-'
+                if (post.still_exists === 1)
+                    td.true true
+                else 
+                    td.false false
+                if (post.saved_content === 1)
+                    td.true true
+                else
+                    td.false false
+                td
+                    a(href=`https://www.instagram.com/p/${post.code}/`) link
+                td
+                    a(href=`/contents?code=${post.code}`) View content
+    div#previewWidget
+        div(hidden)
+    script(src='posts.js')

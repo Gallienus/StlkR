@@ -1,0 +1,39 @@
+extends layout
+
+block extrahead
+    if (post)
+        title= `Content - ${post.code}`
+    else if (user)
+        title= `Content - ${user.username}`
+    else
+        title Content
+
+block content
+    if (post)
+        h1
+            | Content (from post 
+            a(href=`/post?code=${post.code}`)= post.code
+            | )
+    else if (user)
+        h1
+            | Content (by user 
+            a(href=`/user?username=${user.username}`)= user.username
+            | )
+    else
+        h1 Content
+    hr
+    if (contents)
+        each content in contents
+            p
+                if (content.stored_locally === 1)
+                    if (content.is_video === 1)
+                        img(src=`/storage/${content.preview_filename}`)
+                    else
+                        img(src=`/storage/${content.media_filename}`)
+                else
+                    if (content.is_video === 1)
+                        img(src=content.preview_url)
+                    else
+                        img(src=content.media_url)
+    else
+        h3 No content found

@@ -1,0 +1,55 @@
+extends layout
+
+block extrahead
+    title Robot
+
+block content
+    h1 Robot
+    hr
+    table
+        tr
+            td Status
+            td#status= status
+        tr
+            td Paused
+            td
+                if paused
+                    input#paused(type='checkbox',checked)
+                else
+                    input#paused(type='checkbox')
+        tr
+            td Story subscriptions
+            td
+                if storiesPaused
+                    input#storiesPaused(type='checkbox',checked)
+                else
+                    input#storiesPaused(type='checkbox')
+        tr
+            td Queue (
+                span#queueCount -
+                | )
+            td
+                table#queue
+        tr
+            td Add to queue
+            td
+                form(action='null')
+                    | type
+                    //- input#queueType(type='text')
+                    select#queueType
+                        option(value='profile') profile
+                        option(value='profilePosts') profilePosts
+                        option(value='post') post
+                        option(value='downloadSaved') downloadSaved
+                        option(value='saved2Queue') saved2Queue
+                        option(value='login') login
+                        option(value='content2DownloadQueue') content2DownloadQueue
+                        option(value='downloadContent') downloadContent
+                        option(value='stories') stories
+                    |  content
+                    input#queueContent(type='text')
+                    |  priority
+                    input#queuePriority(type='checkbox')
+                    input#queueSubmit(type='submit',value='Add')
+    script(src='/socket.io.js')
+    script(src='/robot.js')

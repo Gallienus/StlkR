@@ -1,0 +1,24 @@
+extends layout
+
+block extrahead
+    if (user)
+        title= `Profile pics - ${user.username}`
+    else
+        title Profile pics
+
+block content
+    if (user)
+        h1
+            | Profile pics (for user 
+            a(href=`/user?username=${user.username}`)= user.username
+            | )
+    else
+        h1 Profile pics
+    hr
+    if (profilePics)
+        each profilePic in profilePics
+            p
+                
+                img(src=`/storage/${profilePic.filename}`)
+    else
+        h3 No profile pics found

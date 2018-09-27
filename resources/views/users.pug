@@ -1,0 +1,56 @@
+extends layout
+
+block extrahead
+    title User list
+
+block content
+    h1 User list
+    hr
+    table(border='0', cellpadding='3', cellspacing='3')
+        tr
+            - if (!sort) sort = 'id'
+            - if (!flow) flow = 'desc'
+            - let idLink             = `?sort=id&flow=${             sort === 'id'              ? 'desc' : 'asc'}`
+            - let usernameLink       = `?sort=username&flow=${       sort === 'username'        ? 'desc' : 'asc'}`
+            - let postCountLink      = `?sort=post_count&flow=${     sort === 'post_count'      ? 'desc' : 'asc'}`
+            - let followersCountLink = `?sort=followers_count&flow=${sort === 'followers_count' ? 'desc' : 'asc'}`
+            - let stillExistsLink    = `?sort=still_exists&flow=${   sort === 'still_exists'    ? 'desc' : 'asc'}`
+            - let isPrivateLink      = `?sort=is_private&flow=${     sort === 'is_private'      ? 'asc' : 'desc'}`
+            th
+                a(href=idLink) id
+            th.small instagram_id
+            th 
+                a(href=usernameLink) username
+            th real_name
+            th 
+                a.small(href=postCountLink) post_count
+            th
+                a.small(href=followersCountLink) followers_count
+            th
+                a.small(href=stillExistsLink) still_exists
+            th
+                a.small(href=isPrivateLink) is_private
+        each user in users
+            tr
+                td= user.id
+                td= user.instagram_id || '-'
+                td
+                    a.usernameElement(href=`/user?username=${user.username}`)= user.username
+                td= user.real_name
+                td= user.post_count || '-'
+                td= user.followers_count || '-'
+                if (user.still_exists === 1)
+                    td.true true
+                else
+                    td.false false
+                if (user.is_private === 1)
+                    td.true true
+                else
+                    td.false false
+                td
+                    a.small(href=`/posts?username=${user.username}`) View posts
+                td
+                    a.small(href=`/contents?username=${user.username}`) View contents
+    div#previewWidget
+        div(hidden)
+    script(src='users.js')

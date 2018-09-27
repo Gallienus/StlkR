@@ -1,0 +1,101 @@
+table th a       { color: red; text-decoration: none; }
+a:hover { color: rgb(100,0,0);                        }
+
+a { color: #554bb3; text-decoration: none; }
+
+.restrictWidth { max-width: 250px; }
+.small { font-size: 11px; }
+.bold { font-weight: bold; }
+.notHuge { max-width: 300px; max-height: 300px; }
+.disabled { opacity: 0.5; }
+
+.positive { background-color: #55cc55; }
+.negative { background-color: #fc5555; }
+
+.true { color: green; }
+.false { color: red; font-style: italic; }
+
+.displayAge { color: orange; }
+
+table tr:nth-child(2n) { background-color: #f1f6ff; }
+
+td.caption {
+    font-size: 12px;
+}
+
+#otherData input:first-child {
+    width: 50px;
+}
+#otherData input:last-child {
+    width: 170px;
+}
+#otherData table {
+    margin-left: 5px;
+}
+#otherData {
+    margin-left: -5px;
+}
+#otherData a {
+    font-size: 10px;
+}
+
+#previewWidget {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+#previewWidget > div {
+    position: fixed;
+}
+
+#previewWidget img {
+    height: 300px;
+}
+
+nav > span {
+    margin-right: 10px;
+}
+
+nav > span > a {
+    color: #b0bf4f;
+    font-style: italic;
+}
+
+
+.jo-slider {
+    height: 14px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    position: relative;
+    width: 100%;
+}
+
+.jo-slider-range {
+    width: 23%;
+    height: 14px;
+    position: absolute;
+    background-color: #e0e0e0;
+}
+
+.jo-slider-handle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #b4b4b4;
+    position: absolute;
+    top: -4px;
+    background-color: #f6f6f6;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.jo-slider-indicator {
+    top: 10px;
+    font-size: 10px;
+    position: absolute;
+    transform-origin: bottom left;
+    transform: rotate(90deg);
+}
+
+
+/*td { border: 1px solid rgba(0,0,0,0.5); margin:0; padding:5px; }*/

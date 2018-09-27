@@ -1,0 +1,22 @@
+{
+    "querySelectors": {
+        "imageSrc": "article > div > div > div > div img",
+        "videoSrc": "article > div > div > div > div video",
+        "rightButton": ".coreSpriteRightChevron",
+        "uploaderName": "article > header > div > div > div > a",
+        "uploadedDate": "time",
+        "imageDescription": "article > div > div > ul > li > span",
+        "profilePrivate": "article > div > div > h2",
+        "profilePicture": "header > div > div img",
+        "profileUsername": "section > div > h1",
+        "profileRealName": "section > div:nth-of-type(2) > h1",
+        "profileWebpage": "header > section > div:nth-of-type(2) > a, main > div > div > a",
+        "profileBiography": "header > section > div:nth-of-type(2) > span, main > div > div > span",
+        "profilePostCount": "li > span > span",
+        "profileFollowersCount": "li:nth-of-type(2) > span > span, li:nth-of-type(2) > a > span",
+        "profileFollowingCount": "li:nth-of-type(3) > span > span, li:nth-of-type(3) > a > span",
+        "uploadsListLoadingWheel": "article > div:nth-child(2) > div",
+        "uploadsListPosts": "article > div > div > div > div > a",
+        "errorContainer": ".error-container"
+    }
+}

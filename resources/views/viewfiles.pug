@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 View files
+    hr
+    a#back(href='/')= '<------------------------'
+    each file in files
+        p
+            img(src='/files/' + file.image)
+            - if (file.video)
+                video(src='/files/' + file.video, controls, loop)
+    script(src='/files.js')

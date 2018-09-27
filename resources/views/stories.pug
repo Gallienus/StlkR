@@ -1,0 +1,26 @@
+extends layout
+
+block extrahead
+    if (user)
+        title= `Stories - ${user.username}`
+    else
+        title Stories
+
+block content
+    if (user)
+        h1
+            | Stories (by 
+            a(href=`/user?username=${user.username}`)= user.username
+            | )
+    else
+        h1 Stories
+    hr
+    if (stories)
+        each story in stories
+            p
+                if (story.is_video === 1)
+                    img(src=`/storage/${story.preview_filename}`)
+                else
+                    img(src=`/storage/${story.media_filename}`)
+    else
+        h3 No stories found

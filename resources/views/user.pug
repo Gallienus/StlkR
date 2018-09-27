@@ -1,0 +1,159 @@
+extends layout
+
+block extrahead
+    if (user)
+        title= `User info - ${user.username}`
+    else
+        title User info
+
+block content
+    h1 User info
+    hr
+    if (user)
+        input#user_id(type='hidden',value=user.id)
+        input#username(type='hidden',value=user.username)
+        input#birthday_start(type='hidden',value=user.birthday_start)
+        input#birthday_stop(type='hidden',value=user.birthday_stop)
+        table
+            tr
+                td.bold profile picture
+                td
+                    if (user.profile_pic_filename)
+                        img(src=`/storage/${user.profile_pic_filename}`)
+                    else
+                        | -
+            tr
+                td.bold id
+                td= user.id
+            tr
+                td.bold instagram_id
+                td= user.instagram_id || '-'
+            tr
+                td.bold username
+                td
+                    input#usernameInput(type='text',value=user.username,before=user.username)
+                td
+                    button#updateUsername(disabled) Update
+            tr
+                td.bold real_name
+                td= user.real_name || '-'
+            tr
+                td.bold age
+                td#age -
+                td
+                    span.small born between 
+                    - let bStart = ''
+                    if user.birthday_start
+                        - bStart = new Date(user.birthday_start).toISOString().replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$1-$2-$3')
+                    input#birthdayStart(type='date',value=bStart,before=bStart)
+                td
+                    span.small  and 
+                    - let bStop = ''
+                    if user.birthday_stop
+                        - bStop = new Date(user.birthday_stop).toISOString().replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$1-$2-$3')
+                    if user.birthday_start
+                        input#birthdayStop(type='date',value=bStop,before=bStop)
+                    else
+                        input#birthdayStop(type='date',before='',disabled)
+                td
+                    button#updateAge(disabled) Update
+                td(style='max-width:250px')
+                    span.small  (or 
+                        a#insertBirthYear(href='javascript:void(0)') insert from birth year 
+                    span.small or 
+                        a#insertAge(href='javascript:void(0)') insert from current age 
+                    span.small )
+            tr
+                td.bold post_count
+                td= user.post_count || '-'
+            tr
+                td.bold followers_count
+                td= user.followers_count || '-'
+            tr
+                td.bold following_count
+                td= user.following_count || '-'
+            tr
+                td.bold is_private
+                if (user.is_private === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold still_exists
+                if (user.still_exists === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold biography
+                td= user.biography || '-'
+            tr
+                td.bold
+                    a(href=`/profilePics?username=${user.username}`) profile_pics_in_db
+                td= user.profile_pics_in_db || '-'
+
+            tr
+                td.bold
+                    a(href=`/stories?username=${user.username}`) stories_in_db
+                td= user.stories_in_db || '-'
+            tr
+                td.bold
+                    a(href=`/posts?username=${user.username}`) posts_in_db
+                td= user.posts_in_db || '-'
+            tr
+                td.bold
+                    a(href=`/contents?username=${user.username}`) contents_in_db
+                td= user.contents_in_db || '-'
+            tr
+                td.bold download_all_posts
+                td
+                    if user.download_all_posts === 1
+                        input#dlop(type='checkbox',checked)
+                    else
+                        input#dlop(type='checkbox')
+            tr
+                td.bold story_sub_interval
+                td
+                    if user.story_sub_interval > 0
+                        input#interval(value=user.story_sub_interval,before=user.story_sub_interval)
+                    else
+                        input#interval(value='',before='')
+                td
+                    button#updateInterval(disabled) Update
+            tr
+                td.bold webpage
+                if (user.webpage)
+                    td
+                        if (user.webpage.startsWith('http'))
+                            a(href=user.webpage) link
+                        else
+                            a(href='https://' + user.webpage) link
+                else
+                    td -
+            tr
+                td.bold IG profile
+                td
+                    a(href='https://www.instagram.com/' + user.username + '/') link
+            //- if (user.other_data)
+            tr
+                td.bold other_data
+                td
+                    div#otherData= user.other_data || '{}'
+        h2 Update fields
+        table
+            tr
+                td Tags (seperate by ,)
+                td
+                    input#tags(type='text',value=user.tags)
+                td
+                    button#updateTags(disabled) Update
+        p controls:
+        button#addToQueue Add profile to queue
+        button#addPostsToQueue Add posts to queue
+        button#downloadStory Check and download story
+        script(src='/user.js')
+    else
+        p
+            bold No user exists with that username
+        p
+            a(href='/userSearch') Search for a user

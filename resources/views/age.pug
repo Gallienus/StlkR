@@ -1,0 +1,75 @@
+extends layout
+
+block extrahead
+    if (action === 'set_unknown')
+        title Age estimate - set unknown
+    else if (action === 'update')
+        title Age estimate - update
+    else
+        title Age estimate
+
+block content
+    h1 Age estimate
+    hr
+    if action === 'set_unknown'
+        form(action='/api/age/update',method='post')
+            table
+                tr
+                    th User
+                    th Birthday span start
+                    th stop
+                    th Age
+                each user in users
+                    tr
+                        td
+                            a(href=`/user?username=${user.username}`)= user.username
+                        td
+                            input(type='date',class='start form',user=user.id)
+                        td
+                            input(type='date',class='stop form',disabled)
+                        td
+                            span.displayAge
+            input(type='hidden',name='toUpdate',value='{}')
+            input(type='submit',value='Set age estimates')
+        script(src='age_script2.js')
+    else if action === 'update'
+        form(action='age',method='post')
+            table
+                tr
+                    th User
+                    th
+                    th Input
+                    th Age
+                each user in users
+                    - let offset = 31557600000 * user.accuracy
+                    - let start = user.birthday - offset
+                    - let stop = user.birthday + offset
+                    tr
+                        td
+                            a(href=`/user?username=${user.username}`)= user.username
+                        td
+                            button S
+                        td
+                            - let startValue = new Date(start).toISOString().replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$1-$2-$3')
+                            | born between 
+                            input(type='date',class='start form',user=user.id,value=startValue,before=startValue)
+                            |  and 
+                            if user.accuracy === 0
+                                input(type='date',class='stop form',disabled,before='')
+                            else
+                                - let stopValue = new Date(stop).toISOString().replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$1-$2-$3')
+                                input(type='date',class='stop form',value=stopValue,before=stopValue)
+                        td
+                            - let prefix = user.accuracy === 0 ? '' : '~'
+                            - let lowEstimate = Math.floor((Date.now() - stop) / 31557600000)
+                            - let highEstimate = Math.floor((Date.now() - start) / 31557600000)
+                            if lowEstimate === highEstimate
+                                span.displayAge= `${prefix}${lowEstimate} years old`
+                            else
+                                span.displayAge= `${prefix}${lowEstimate}-${highEstimate} years old`
+            input(type='hidden',name='toUpdate',value='{}')
+            input(type='submit',value='Set age estimates')
+        script(src='age_script2.js')
+    else
+        a(href='/age?action=set_unknown') Set unknown
+        a(href='/age?action=update') Update already set

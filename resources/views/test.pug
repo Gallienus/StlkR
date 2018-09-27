@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Test
+    hr
+    p
+        label(for="amount") Span:
+        input(type="text",id="amount",readonly,style="border:0; color:#f6931f; font-weight:bold;")
+    div#slider-container(style='width:450px')
+        div#slider-range
+    hr
+    p
+        label Values: 
+        input(type='text',id='vals',readonly,style='border:0;color:orange;font-weight:bold;')
+    div#slider-container(style='width:450px')
+        div#mySlider.jo-slider
+            div.jo-slider-range(style='left:20%;width:60%;')
+            span.jo-slider-handle(style='left:20%;')
+            span.jo-slider-handle(style='left:80%;')
+            span.jo-slider-indicator - 2003
+    script(src='test.js')

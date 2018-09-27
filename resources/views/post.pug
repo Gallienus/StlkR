@@ -1,0 +1,91 @@
+extends layout
+
+block extrahead
+    if (post)
+        title= `Post info - ${post.code}`
+    else
+        title Post info
+
+block content
+    h1 Post info
+    hr
+    if (post)
+        input#code(type='hidden',value=post.code)
+        input#uploaded(type='hidden',value=post.uploaded)
+        input#user_birthday_start(type='hidden',value=post.user_birthday_start)
+        input#user_birthday_stop(type='hidden',value=post.user_birthday_stop)
+        table
+            tr
+                td.bold contents
+                td
+                    each content in contents
+                        if (content.stored_locally === 1)
+                            if (content.is_video === 1)
+                                img(src=`/storage/${content.preview_filename}`).notHuge
+                            else
+                                img(src=`/storage/${content.media_filename}`).notHuge
+                        else
+                            if (content.is_video === 1)
+                                img(src=content.preview_url).notHuge
+                            else
+                                img(src=content.media_url).notHuge
+            tr
+                td.bold id
+                td= post.id
+            tr
+                td.bold code
+                td= post.code
+            tr
+                td.bold uploader
+                td
+                    a(href=`/user?username=${post.uploader}`)= post.uploader
+            tr
+                td.bold uploaded
+                td#uploadedEl -
+            if (post.user_birthday_start)
+                tr
+                    td.bold uploader age when posted
+                    td#ageWhenPosted -
+                tr
+                    td.bold uploader age now
+                    td#ageNow -
+            tr
+                td.bold comment_count
+                td= post.comment_count || '-'
+            tr
+                td.bold like_count
+                td= post.like_count || '-'
+            tr
+                td.bold caption
+                td= post.caption || '-'
+            tr
+                td.bold still_exists
+                if (post.still_exists === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold saved_content
+                if (post.saved_content === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold
+                    a(href=`/contents?code=${post.code}`) contents_in_db
+                td= post.contents_in_db || '-'
+            tr
+                td.bold IG post
+                td
+                    a(href=`https://www.instagram.com/p/${post.code}/`) link
+            if (post.other_data)
+                tr
+                    td.bold other_data
+                    td= post.other_data
+        p controls:
+        button#addToQueue Add post to queue
+        button#deleteContents Delete contents
+        script(src='/post.js')
+    else
+        p
+            bold no post exists with that code
