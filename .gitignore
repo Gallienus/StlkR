@@ -3,4 +3,4 @@ storage
 config.js
 resources/database.sqlite3
 .jshintrc
-test.js
+temp

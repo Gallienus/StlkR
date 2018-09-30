@@ -1,0 +1,9 @@
+{
+    "name": "instagram",
+    "description": "A library for fetching data from Instagram",
+    "version": "1.0.0",
+    "main": "instagram.js",
+    "dependencies": {
+        "node-fetch": "^2.1.2"
+    }
+}

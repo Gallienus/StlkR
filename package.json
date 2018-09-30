@@ -11,6 +11,7 @@
     "express": "^4.16.3",
     "get-folder-size": "^2.0.0",
     "hasha": "^3.0.0",
+    "instagram": "file:lib/instagram",
     "instagram-stories": "^1.0.1",
     "morgan": "^1.9.0",
     "nightmare": "^3.0.1",
