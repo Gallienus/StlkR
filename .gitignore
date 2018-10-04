@@ -4,3 +4,4 @@ config.js
 resources/database.sqlite3
 .jshintrc
 temp
+resources/SQL

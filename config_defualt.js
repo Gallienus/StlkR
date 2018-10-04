@@ -16,7 +16,8 @@ let config = {
     },
         
     // User agent to use for requests to Instagram
-    userAgent: "Instagram 9.5.1 (iPhone9,2; iOS 10_0_2; en_US; en-US; scale=2.61; 1080x1920) AppleWebKit/420+",
+    // userAgent: "Instagram 9.5.1 (iPhone9,2; iOS 10_0_2; en_US; en-US; scale=2.61; 1080x1920) AppleWebKit/420+",
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
 
     // The max amounts of requests allowed to be open at the same time
     maxOpenRequests: 5,
