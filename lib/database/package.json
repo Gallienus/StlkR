@@ -1,0 +1,8 @@
+{
+    "name": "database",
+    "description": "Project database handler",
+    "version": "1.0.0",
+    "main": "database.js",
+    "dependencies": {
+    }
+}

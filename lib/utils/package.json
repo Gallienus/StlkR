@@ -1,0 +1,10 @@
+{
+    "name": "utils",
+    "description": "Project utils functions",
+    "version": "1.0.0",
+    "main": "utils.js",
+    "dependencies": {
+        "hasha": "^3.0.0",
+        "request": "^2.87.0"
+    }
+}

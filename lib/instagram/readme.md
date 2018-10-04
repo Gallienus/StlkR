@@ -5,7 +5,7 @@
 const instagram = require('instagram')
 ```
 
-#### instagram.login(username, password) → Promise<Cookies>
+#### instagram.login(username, password) → Promise&lt;Cookies&gt;
 Requests a new login session for username:password. The object returned from the promise should be used as the `cookies` argument for other functions. You should store `cookies` in a database to avoid having to call this function every time you run your application. `cookies` is the two http cookies "sessionsid" and "ds_user_id" used by instagram to recognize user sessions. The object looks like the following:
 
 ```
@@ -23,26 +23,26 @@ Example of cookies object:
 ```
 
 
-#### instagram.getUser(username, cookies) → Promise<UserData>
+#### instagram.getUser(username, cookies) → Promise&lt;UserData&gt;
 Fetches data about a user such as number of followers, biography, profile picture, etc. `UserData` is an object containing the data.
 
 - `username` is the username of the user.
 - `cookies` is the object returned from `instagram.login`.
 
-#### instagram.getPost(code, cookies) → Promise<PostData>
+#### instagram.getPost(code, cookies) → Promise&lt;PostData&gt;
 Fetches data about a post such as likes, image/video url:s, mentions, etc. `PostData` is an object containing the data.
 
 - `code` is the post shortcode. (Eg. BoVMRzZlwWg)
 - `cookies` is the object returned from `instagram.login`.
 
-#### instagram.getStories(username, cookies, [userId]) → Promise<Stories>
-Fetches story data such as upload datetime, location, image/video url:s, etc. from a user. `Stories` is an array of objects with data on each story.
+#### instagram.getStories(username, cookies, [userId]) → Promise&lt;StoriesData&gt;
+Fetches story data such as upload datetime, location, image/video url:s, etc. from a user. `Stories` is a graphql object. `Stories.edges` is an array of the fetched stories.
 
 - `username` is the username of the uploader.
 - `cookies` is the object returned from `instagram.login`.
 - `userId` is the instagram user id of the uploader. If not provided the function will fetch the user id from instagram based on the username.
 
-### instagram.getUserPostsAll(username, cookies, [stopAt], [userId]) → Promise<Posts>
+### instagram.getUserPostsAll(username, cookies, [stopAt], [userId]) → Promise&lt;Posts&gt;
 Fetch a list of posts from a user. `Posts` is an array of objects with data on each post. (This function will normally generate one request per 24 posts.)
 
 - `username` is the username of the uploader.
@@ -50,7 +50,7 @@ Fetch a list of posts from a user. `Posts` is an array of objects with data on e
 - `stopAt` is a post shortcode where the function should stop fetching more posts. If not provided the function will fetch all posts from a user.
 - `userId` is the instagram user id of the uploader. If not provided the function will fetch the user id from instagram based on the username.
 
-### instagram.getUserPosts(userId, cookies, [after], [amount=24]) → Promise<PostsData>
+### instagram.getUserPosts(userId, cookies, [after], [amount=24]) → Promise&lt;PostsData&gt;
 Fetch a list of posts from a user. `PostsData` is a graphql object. `PostsData.edges` is an array of the fetched posts.
 
 - `userId` is the instagram user id of the uploader. (Can be fetched by using `instagram.getUser`.)
@@ -58,13 +58,13 @@ Fetch a list of posts from a user. `PostsData` is a graphql object. `PostsData.e
 - `after` is the instagram graphql hashed post after which posts should be fetched. If `after` represents post number 20 for a user, the function will return `amount` number of posts after post number 20. When null posts will be fetched from post number 1.
 - `amount` is the amount of posts to fetch. Defaults to 24.
 
-### instagram.getSavedPostsAll(cookies, [stopAt]) → Promise<Posts>
+### instagram.getSavedPostsAll(cookies, [stopAt]) → Promise&lt;Posts&gt;
 Fetch a list of the saved posts for the logged in user. `Posts` is an array of objects with data on each post. (This function will normally generate one request per 24 posts.)
 
 - `cookies` is the object returned from `instagram.login`.
 - `stopAt` is a post shortcode where the function should stop fetching more posts. If not provided the function will fetch all posts from a user.
 
-### instagram.getSavedPosts(cookies, [after], [amount=24]) → Promise<PostsData>
+### instagram.getSavedPosts(cookies, [after], [amount=24]) → Promise&lt;PostsData&gt;
 Fetch a list of the saved posts for the logged in user. `PostsData` is a graphql object. `PostsData.edges` is an array of the fetched posts.
 
 - `cookies` is the object returned from `instagram.login`.

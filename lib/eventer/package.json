@@ -1,0 +1,8 @@
+{
+    "name": "eventer",
+    "description": "Project event emitter",
+    "version": "1.0.0",
+    "main": "eventer.js",
+    "dependencies": {
+    }
+}
