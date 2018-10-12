@@ -1,0 +1,8 @@
+{
+    "name": "webserver",
+    "description": "Project webserver functions",
+    "version": "1.0.0",
+    "main": "webserver.js",
+    "dependencies": {
+    }
+}

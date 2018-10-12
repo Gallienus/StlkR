@@ -21,11 +21,7 @@ let config = {
 
     // The max amounts of requests allowed to be open at the same time
     maxOpenRequests: 5,
-
-    // Login credentials for Instagram user to download from
-    username: '',
-    password: '',
-
+    
     // Ports for the webserver
     // (Only used when the webserver is running)
     webserverHttpPort: 8080,
