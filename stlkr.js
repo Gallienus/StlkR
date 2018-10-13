@@ -12,12 +12,18 @@ if (process.argv.length <= 2) {
     console.log(' - full')
     console.log(' - webserveronly')
     console.log(' - downloadonly')
+    console.log(' - removeduplicates') // remove duplicate media in storage folder
 } else {
     let mode = process.argv[2].toLowerCase()
 
     if (mode === 'full') {
-        console.log('Starting StlkR in <full> mode!')
+        console.log('Starting StlkR in <full> mode.')
 
         require('webserver')
+    }
+
+
+    else if (mode === 'removeduplicates') {
+        console.log('Starting StlkR in <removeduplicates> mode.')
     }
 }

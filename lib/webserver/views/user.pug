@@ -16,10 +16,11 @@ block content
         input#birthday_stop(type='hidden',value=user.birthday_stop)
         table
             tr
-                td.bold profile picture
+                td.bold profile picture 
+                    a(href=`/profilePictures?username=${user.username}`)= `(${user.profile_picture_count})`
                 td
-                    if (user.profile_pic_filename)
-                        img(src=`/storage/${user.profile_pic_filename}`)
+                    if (user.profile_picture)
+                        img(src=`/storage/${user.profile_picture}`)
                     else
                         | -
             tr
@@ -35,7 +36,8 @@ block content
                 td
                     button#updateUsername(disabled) Update
             tr
-                td.bold real_name
+                td.bold real_name 
+                    a(href=`/realNames?username=${user.username}`)= `(${user.real_name_count})`
                 td= user.real_name || '-'
             tr
                 td.bold age
@@ -73,55 +75,36 @@ block content
                 td.bold following_count
                 td= user.following_count || '-'
             tr
-                td.bold is_private
-                if (user.is_private === 1)
-                    td.true true
-                else
-                    td.false false
-            tr
                 td.bold still_exists
                 if (user.still_exists === 1)
                     td.true true
                 else
                     td.false false
             tr
-                td.bold biography
+                td.bold is_private
+                if (user.is_private === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold is_verified
+                if (user.is_verified === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold is_business
+                if (user.is_business === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
+                td.bold biography 
+                    a(href=`/biographies?username=${user.username}`)= `(${user.biography_count})`
                 td= user.biography || '-'
             tr
-                td.bold
-                    a(href=`/profilePics?username=${user.username}`) profile_pics_in_db
-                td= user.profile_pics_in_db || '-'
-
-            tr
-                td.bold
-                    a(href=`/stories?username=${user.username}`) stories_in_db
-                td= user.stories_in_db || '-'
-            tr
-                td.bold
-                    a(href=`/posts?username=${user.username}`) posts_in_db
-                td= user.posts_in_db || '-'
-            tr
-                td.bold
-                    a(href=`/contents?username=${user.username}`) contents_in_db
-                td= user.contents_in_db || '-'
-            tr
-                td.bold download_all_posts
-                td
-                    if user.download_all_posts === 1
-                        input#dlop(type='checkbox',checked)
-                    else
-                        input#dlop(type='checkbox')
-            tr
-                td.bold story_sub_interval
-                td
-                    if user.story_sub_interval > 0
-                        input#interval(value=user.story_sub_interval,before=user.story_sub_interval)
-                    else
-                        input#interval(value='',before='')
-                td
-                    button#updateInterval(disabled) Update
-            tr
-                td.bold webpage
+                td.bold webpage 
+                    a(href=`/webPages?username=${user.username}`)= `(${user.web_page_count})`
                 if (user.webpage)
                     td
                         if (user.webpage.startsWith('http'))
@@ -131,14 +114,25 @@ block content
                 else
                     td -
             tr
+                td.bold
+                    a(href=`/stories?username=${user.username}`) stories_in_db
+                td= user.stories_in_db || '-'
+            tr
+                td.bold
+                    a(href=`/posts?username=${user.username}`) posts_in_db
+                td= user.posts_in_db || '-'
+            //- tr
+            //-     td.bold
+            //-         a(href=`/contents?username=${user.username}`) contents_in_db
+            //-     td= user.contents_in_db || '-'
+            tr
                 td.bold IG profile
                 td
                     a(href='https://www.instagram.com/' + user.username + '/') link
-            //- if (user.other_data)
             tr
-                td.bold other_data
+                td.bold others
                 td
-                    div#otherData= user.other_data || '{}'
+                    div#otherData= user.others || '{}'
         h2 Update fields
         table
             tr

@@ -37,15 +37,20 @@ block content
                     | type
                     //- input#queueType(type='text')
                     select#queueType
-                        option(value='profile') profile
-                        option(value='profilePosts') profilePosts
-                        option(value='post') post
-                        option(value='downloadSaved') downloadSaved
-                        option(value='saved2Queue') saved2Queue
                         option(value='login') login
-                        option(value='content2DownloadQueue') content2DownloadQueue
-                        option(value='downloadContent') downloadContent
-                        option(value='stories') stories
+                        option(value='profile') profile (username)
+                        option(value='posts') posts (username)
+                        option(value='post') post (code)
+                        option(value='download') download (content_id)
+                        option(value='stories') stories (username)
+                        option(value='login') login
+                        option(value='contentToDownloadQueue') contentToDownloadQueue
+                        option(value='saved') saved
+                        option(value='savedToQueue') savedToQueue
+                    |  login
+                    select#queueLogin
+                        each login in logins
+                            option(value=login.id)= login.username
                     |  content
                     input#queueContent(type='text')
                     |  priority

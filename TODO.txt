@@ -1,11 +1,8 @@
-- Fix the fucking api.js route
-
-- test robot.taskSaved()
-
 - stories: tappable objects (hashtags, mentions, locations...)
 - pause robot
 - subscription (loop in robot)
 
+- re-add storage disk size to API
 
 - savedata.json > total saved posts count is not returned from instagram function
 - savedata.json > each post data node does actually contain HD image (not video url)
