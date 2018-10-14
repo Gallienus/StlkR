@@ -2,7 +2,11 @@
 - pause robot
 - subscription (loop in robot)
 
+- add pages /realNames, /biographies, /webPages
+
 - re-add storage disk size to API
+
+- post2Queue should only add posts that still_exists
 
 - savedata.json > total saved posts count is not returned from instagram function
 - savedata.json > each post data node does actually contain HD image (not video url)

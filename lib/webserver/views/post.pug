@@ -14,6 +14,7 @@ block content
         input#uploaded(type='hidden',value=post.uploaded)
         input#user_birthday_start(type='hidden',value=post.user_birthday_start)
         input#user_birthday_stop(type='hidden',value=post.user_birthday_stop)
+        input#last_check(type='hidden',value=post.last_check)
         table
             tr
                 td.bold contents
@@ -33,6 +34,9 @@ block content
                 td.bold id
                 td= post.id
             tr
+                td.bold instagram_id
+                td= post.instagram_id || '-'
+            tr
                 td.bold code
                 td= post.code
             tr
@@ -41,7 +45,7 @@ block content
                     a(href=`/user?username=${post.uploader}`)= post.uploader
             tr
                 td.bold uploaded
-                td#uploadedEl -
+                td#uploadedEl= post.uploaded
             if (post.user_birthday_start)
                 tr
                     td.bold uploader age when posted
@@ -59,6 +63,12 @@ block content
                 td.bold caption
                 td= post.caption || '-'
             tr
+                td.bold comments_disabled
+                if (post.comments_disabled === 1)
+                    td.true true
+                else
+                    td.false false
+            tr
                 td.bold still_exists
                 if (post.still_exists === 1)
                     td.true true
@@ -74,6 +84,9 @@ block content
                 td.bold
                     a(href=`/contents?code=${post.code}`) contents_in_db
                 td= post.contents_in_db || '-'
+            tr
+                td.bold last_check
+                td#lastCheck= post.last_check || '-'
             tr
                 td.bold IG post
                 td

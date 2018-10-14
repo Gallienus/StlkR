@@ -14,6 +14,7 @@ block content
         input#username(type='hidden',value=user.username)
         input#birthday_start(type='hidden',value=user.birthday_start)
         input#birthday_stop(type='hidden',value=user.birthday_stop)
+        input#last_check(type='hidden',value=user.last_check)
         table
             tr
                 td.bold profile picture 
@@ -92,11 +93,25 @@ block content
                     td.true true
                 else
                     td.false false
-            tr
-                td.bold is_business
-                if (user.is_business === 1)
+            if (user.is_business === 1)
+                tr
+                    td.bold is_business
                     td.true true
-                else
+                tr
+                    td.bold business_email
+                    td= user.business_email || '-'
+                tr
+                    td.bold business_category
+                    td= user.business_category || '-'
+                tr
+                    td.bold business_phone
+                    td= user.business_phone || '-'
+                tr
+                    td.bold business_address
+                    td= user.business_address || '-'
+            else
+                tr
+                    td.bold is_business
                     td.false false
             tr
                 td.bold biography 
@@ -105,12 +120,12 @@ block content
             tr
                 td.bold webpage 
                     a(href=`/webPages?username=${user.username}`)= `(${user.web_page_count})`
-                if (user.webpage)
+                if (user.web_page)
                     td
-                        if (user.webpage.startsWith('http'))
-                            a(href=user.webpage) link
+                        if (user.web_page.startsWith('http'))
+                            a(href=user.web_page)= user.web_page
                         else
-                            a(href='https://' + user.webpage) link
+                            a(href='https://' + user.web_page)= user.web_page
                 else
                     td -
             tr
@@ -121,10 +136,9 @@ block content
                 td.bold
                     a(href=`/posts?username=${user.username}`) posts_in_db
                 td= user.posts_in_db || '-'
-            //- tr
-            //-     td.bold
-            //-         a(href=`/contents?username=${user.username}`) contents_in_db
-            //-     td= user.contents_in_db || '-'
+            tr
+                td.bold last_check
+                td#lastCheck= user.last_check || '-'
             tr
                 td.bold IG profile
                 td

@@ -8,6 +8,7 @@ a { color: #554bb3; text-decoration: none; }
 .bold { font-weight: bold; }
 .notHuge { max-width: 300px; max-height: 300px; }
 .disabled { opacity: 0.5; }
+.right { float:right; }
 
 .positive { background-color: #55cc55; }
 .negative { background-color: #fc5555; }

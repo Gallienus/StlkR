@@ -1,0 +1,44 @@
+extends layout
+
+block extrahead
+    title Database stats
+
+block content
+    table
+        tr
+            td.bold Storage size
+            td= (stats.storage_size/(1024*1024*1024)).toFixed(2) + ' GB' || '-'
+        tr
+            td.bold Users
+            td= stats.user_count
+            td.small= `(${stats.hidden_user_count} hidden)`
+        tr
+            td.bold Profile pictures
+            td= stats.user_profile_picture_count
+        tr
+            td.bold Biographies
+            td= stats.user_biography_count
+        tr
+            td.bold Real names
+            td= stats.user_real_name_count
+        tr
+            td.bold Web pages
+            td= stats.user_web_page_count
+        tr
+            td.bold Posts
+            td= stats.post_count
+            td.small= `(${stats.hidden_post_count} hidden)`
+        tr
+            td.bold Contents
+            td= stats.content_count
+        tr
+            td.bold Stories
+            td= stats.story_count
+        tr
+            td.bold Logins
+            td= stats.login_count
+            td.small= `(${stats.logged_in_login_count} logged in)`
+        tr
+            td.bold Saved
+            td= stats.saved_count
+            td.small= `(${stats.saved})`
