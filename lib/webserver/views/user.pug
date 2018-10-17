@@ -15,6 +15,7 @@ block content
         input#birthday_start(type='hidden',value=user.birthday_start)
         input#birthday_stop(type='hidden',value=user.birthday_stop)
         input#last_check(type='hidden',value=user.last_check)
+        input#subscribed_by(type='hidden',value=user.subscribed_by)
         table
             tr
                 td.bold profile picture 
@@ -147,7 +148,7 @@ block content
                 td.bold others
                 td
                     div#otherData= user.others || '{}'
-        h2 Update fields
+        h3 Update fields
         table
             tr
                 td Tags (seperate by ,)
@@ -155,10 +156,40 @@ block content
                     input#tags(type='text',value=user.tags)
                 td
                     button#updateTags(disabled) Update
-        p controls:
+        h3 Subscription
+        table
+            tr
+                td subscribed_by
+                td= user.subscribed_by || '-'
+        a#fetchSubscribed.small(href='javascript:void(0)') Fetch subscribed data
+        div#subscriptionData(style='display:none;')
+            table
+                tr
+                    td profile
+                    td
+                        input#subscribedProfile(type='checkbox',disabled)
+                tr
+                    td story
+                    td
+                        input#subscribedStory(type='checkbox',disabled)
+                tr
+                    td posts
+                    td
+                        input#subscribedPosts(type='checkbox',disabled)
+                tr
+                    td interval
+                    td
+                        input#subscribedInterval(type='number',value=-1,disabled)
+                tr
+                    td
+                        button#subscribe Subscribe
+                    td
+                        button#unsubscribe Unsubscribe
+        h3 Controls
         button#addToQueue Add profile to queue
         button#addPostsToQueue Add posts to queue
         button#downloadStory Check and download story
+        button#fetchAllPosts Fetch all posts
         script(src='/user.js')
     else
         p
