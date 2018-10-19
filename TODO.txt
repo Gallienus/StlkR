@@ -1,12 +1,12 @@
 - stories: tappable objects (hashtags, mentions, locations...)
 - pause robot
-- subscription (loop in robot)
 
-- add pages /realNames, /biographies, /webPages
+- subscription needs to check user before running so that it doesnt fetch profile 
+  if client just did it manually within the last interval
 
-- re-add storage disk size to API
-
-- post2Queue should only add posts that still_exists
+- add pages /realNames, /biographies, /webPages, /subscriptions
 
 - savedata.json > total saved posts count is not returned from instagram function
 - savedata.json > each post data node does actually contain HD image (not video url)
+
+- VSCO!!!!

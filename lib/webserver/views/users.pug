@@ -30,6 +30,17 @@ block content
                 a.small(href=stillExistsLink) still_exists
             th
                 a.small(href=isPrivateLink) is_private
+            th
+                a.small(href=isBusinessLink) is_business
+            th.small last_check
+            if (doSub)
+                th.small is_subscribed
+                th.small profile
+                th.small story
+                th.small posts
+                th.small interval
+
+        - let n = Date.now()
         each user in users
             tr
                 td= user.id
@@ -47,6 +58,24 @@ block content
                     td.true true
                 else
                     td.false false
+                if (user.is_business === 1)
+                    td.true true
+                else
+                    td.false false
+                td= (n - user.last_check) / 1000 + 's ago'
+                if (doSub)
+                    if (user.subscription_login_id)
+                        td.true true
+                        td= user.subscription_profile
+                        td= user.subscription_story
+                        td= user.subscription_posts
+                        td= user.subscription_interval
+                    else
+                        td.false false
+                        td -
+                        td -
+                        td -
+                        td -
                 td
                     a.small(href=`/posts?username=${user.username}`) View posts
                 td
