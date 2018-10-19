@@ -1,12 +1,19 @@
 - stories: tappable objects (hashtags, mentions, locations...)
 - pause robot
 
+- taskPost does not set still_exists=0 on posts that are deleted
+
 - subscription needs to check user before running so that it doesnt fetch profile 
   if client just did it manually within the last interval
 
 - add pages /realNames, /biographies, /webPages, /subscriptions
 
+- fix the fucking /age page
+
+- user relations (fanpage, sis, fam, frens,..)
+
 - savedata.json > total saved posts count is not returned from instagram function
 - savedata.json > each post data node does actually contain HD image (not video url)
 
 - VSCO!!!!
+- add media from other sources and associate with user

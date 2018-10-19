@@ -31,9 +31,15 @@ block content
         tr
             td.bold Contents
             td= stats.content_count
+            td.small= `(${stats.content_video_count} videos)`
         tr
             td.bold Stories
             td= stats.story_count
+            td.small= `(${stats.story_video_count} videos)`
+        tr
+            td.bold Files
+            td= stats.files
+            td.small= `(${stats.storage_files} in storage, ${stats.trashcan_files} in trashcan)`
         tr
             td.bold Logins
             td= stats.login_count
