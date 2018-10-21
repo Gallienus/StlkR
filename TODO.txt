@@ -1,6 +1,8 @@
 - stories: tappable objects (hashtags, mentions, locations...)
 - pause robot
 
+- on /user subscribed_by can give duplicates, something's up with the grouping
+
 - taskPost does not set still_exists=0 on posts that are deleted
 
 - subscription needs to check user before running so that it doesnt fetch profile 

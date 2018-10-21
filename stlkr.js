@@ -11,9 +11,10 @@ if (process.argv.length <= 2) {
     console.log(' Where <mode> is one of the following:')
     console.log(' - full')
     console.log(' - removeduplicates')
+    console.log(' - trashfilesnotindb') // move files not in database to the trashcan
     console.log(' - ensuremd5') // make sure all pictures in storage has md5 sig
-    console.log(' - webserveronly')
-    console.log(' - downloadonly')
+    console.log(' - webserveronly') // TODO:
+    console.log(' - downloadonly') // TODO:
 } else {
     let mode = process.argv[2].toLowerCase()
 
@@ -46,6 +47,12 @@ if (process.argv.length <= 2) {
 
             }
         }
+    }
+
+    else if (mode === 'trashfilesnotindb') {
+        console.log('Starting StlkR in <TrashFilesNotInDB> mode.')
+        
+        require('./lib/robot/tools').trashFilesNotInDb()
     }
 
     else if (mode === 'ensuremd5') {
