@@ -1,0 +1,51 @@
+extends layout
+
+block extrahead
+    if list.title
+        title= list.title
+
+block content
+    if list.title
+        h1= list.title
+        hr
+    if list
+        table
+            tr
+                each val, key in list.headers
+                    if val && val.noHeader != true
+                        if val.href
+                            th
+                                a(class=val.class || '',href=val.href)= key
+                        else
+                            th(class=val.class || '')= key
+                    else
+                        th= key
+            each item in list.body
+                tr
+                    each val, key in list.headers
+                        - value = item[key]
+                        - extraClass = ''
+                        if val && val.value
+                            - if (val.eval)
+                                - value = val.eval(item[key])
+                            - if (val.value.isBool == true)
+                                - if (value == 1)
+                                    - value = true
+                                    - extraClass = 'true'
+                                - else if (value == 0)
+                                    - value = false
+                                    - extraClass = 'false'
+                            if val.value.href
+                                - let href = val.value.href.split('$').map(v => item[v] ? item[v] : v).join('')
+                                td
+                                    if val.value.text
+                                        a(class=((val.value.class || '') + extraClass), href=href)= val.value.text
+                                    else
+                                        a(class=((val.value.class || '') + extraClass), href=href)= value
+                            else
+                                if val.value.text
+                                    td(class=((val.value.class || '') + extraClass))= val.value.text
+                                else
+                                    td(class=((val.value.class || '') + extraClass))= value
+                        else
+                            td= value

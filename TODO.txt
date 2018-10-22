@@ -12,6 +12,8 @@
 
 - fix the fucking /age page
 
+- only allow on subscription per user_id, change field to UNIQUE in database
+
 - user relations (fanpage, sis, fam, frens,..)
 
 - savedata.json > total saved posts count is not returned from instagram function

@@ -1,0 +1,9 @@
+{
+    "name": "vsco",
+    "description": "A library for fetching data from VSCO",
+    "version": "1.0.0",
+    "main": "vsco.js",
+    "dependencies": {
+        "node-fetch": "^2.1.2"
+    }
+}

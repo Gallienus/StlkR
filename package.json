@@ -26,6 +26,7 @@
     "socket.io": "^2.1.1",
     "sqlite3": "^4.0.2",
     "utils": "file:lib/utils",
+    "vsco": "file:lib/vsco",
     "webserver": "file:lib/webserver"
   }
 }
