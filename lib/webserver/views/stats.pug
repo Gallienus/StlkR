@@ -12,6 +12,7 @@ block content
             td.bold Users
             td= stats.user_count
             td.small= `(${stats.hidden_user_count} hidden)`
+            td.small= `(average age is ${((Date.now() - stats.averageBirthday) / 31556926000).toFixed(2)} years old)`
         tr
             td.bold Profile pictures
             td= stats.user_profile_picture_count
@@ -28,6 +29,7 @@ block content
             td.bold Posts
             td= stats.post_count
             td.small= `(${stats.hidden_post_count} hidden)`
+            td.small= `(average uploaded ${((Date.now() - stats.average_post_uploaded) / 31556926000).toFixed(2)} years ago)`
         tr
             td.bold Contents
             td= stats.content_count

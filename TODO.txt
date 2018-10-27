@@ -1,6 +1,13 @@
 - stories: tappable objects (hashtags, mentions, locations...)
 - pause robot
 
+- PREVENT DUPLICATES BEING ADDED TO QUEUE!
+
+- story browser
+    *easier to see users stories (previews)
+    *index for all seen/unseen stories
+    *prompt to keep or remove all new stories downloaded
+
 - on /user subscribed_by can give duplicates, something's up with the grouping
 
 - taskPost does not set still_exists=0 on posts that are deleted
@@ -11,8 +18,9 @@
 - add pages /realNames, /biographies, /webPages, /subscriptions
 
 - fix the fucking /age page
+- fix the fucking user_other shit
 
-- only allow on subscription per user_id, change field to UNIQUE in database
+- only allow one subscription per user_id, change field to UNIQUE in database
 
 - user relations (fanpage, sis, fam, frens,..)
 
@@ -21,3 +29,7 @@
 
 - VSCO!!!!
 - add media from other sources and associate with user
+
+______
+remove user id 48
+remove user id 108
